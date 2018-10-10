@@ -1,4 +1,4 @@
-Feature: Playing audio using Cookbook!
+Feature: Playing an Audio with the new AudioUI on SMP Cookbook tool.
   Scenario: Play audio on Radio page using Cookbook
     Given I am on Cookbook
     And I visit Radio page
