@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'selenium/webdriver'
+gem 'selenium-webdriver'
 gem 'capybara'
 gem 'cucumber'
-gem 'capybara/cucumber'
+gem 'site_prism'
+# gem 'capybara/cucumber'

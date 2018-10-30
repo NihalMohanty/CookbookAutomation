@@ -1,7 +1,12 @@
-require 'selenium/webdriver'
-require 'capybara/cucumber'
-# require 'site_prism'
+require 'capybara/dsl'
+require 'cucumber'
+require 'selenium-webdriver'
+require 'site_prism'
 
-# Capybara.default_driver = :selenium
-#    Selenium::WebDriver.for :chrome
-#    browser = Capybara.current_session
+Capybara.default_driver = :selenium
+Capybara.app_host = "http://cookbook.tools.bbc.co.uk/audiouiod"
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new app, browser: :chrome
+end
+
+World(Capybara::DSL)
