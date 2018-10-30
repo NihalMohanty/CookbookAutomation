@@ -1,4 +1,4 @@
-require 'C:\Users\m1041925\atom_workspace\CookbookAutomation\features\support\pages\BasePage.rb'
+require_relative '../pages/BasePage'
 
 class AudioUiPage < BasePage
   set_url('http://cookbook.tools.bbc.co.uk/audiouiod')
