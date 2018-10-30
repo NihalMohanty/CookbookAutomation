@@ -7,6 +7,4 @@ class BasePage < SitePrism::Page
     cookieOkPrompt.click
     cookieContinue.click
   end
-
 end
-# World(BasePage)
