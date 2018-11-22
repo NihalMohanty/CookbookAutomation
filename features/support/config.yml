@@ -1,0 +1,5 @@
+configuration = {
+  'env1' => "www.env1.com",
+  'env2' => "www.env2.com",
+  'env3' => "www.env3.com",
+}
