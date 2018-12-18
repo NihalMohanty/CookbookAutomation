@@ -90,10 +90,10 @@ class RadioPage < BasePage
         end
     end
 
-    def elementsPresent(value)
-      within_frame(frame) do
-        element = value.tr(' ', '_')
-        send(element).visible?
-      end
-    end
+    # def elementsPresent(value)
+    #   within_frame(frame) do
+    #     element = value.tr(' ', '_')
+    #     send(element).visible?
+    #   end
+    # end
   end
