@@ -39,7 +39,7 @@ class ContinuousPlay < BasePage
           carousal_elements[i].click
         end
       end
-      play_cta.click
+      # play_cta.click
     end
     # checkElementPresent
   end
