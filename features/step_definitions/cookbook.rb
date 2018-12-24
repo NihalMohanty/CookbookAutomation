@@ -105,6 +105,12 @@ When("I seek to the end of the player") do
   objcreate(ContinuousPlay).seek_to_end_without_pause
 end
 
+When("I go to full screen mode") do
+  within_frame(objcreate(ContinuousPlay).frame) do
+  objcreate(ContinuousPlay).fullScreen_button.click
+end
+end
+
 Then("After specified time the next program gets played") do
   within_frame(objcreate(ContinuousPlay).frame) do
     expect(objcreate(ContinuousPlay).pause_button.visible?).to be_truthy
@@ -135,9 +141,7 @@ end
 
 Then("I dont find any CP at the end of the video") do
   objcreate(ContinuousPlay).seek_to_end_without_pause
-  # within_frame(objcreate(ContinuousPlay).frame) do
-    expect(objcreate(ContinuousPlay).checkCountdown).to be_truthy
-  # end
+  expect(objcreate(ContinuousPlay).checkCountdown).to be_truthy
 end
 
 Then("I see the guidance message in the start") do

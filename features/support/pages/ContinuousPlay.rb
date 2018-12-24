@@ -1,21 +1,23 @@
 require_relative '../pages/BasePage'
 
 class ContinuousPlay < BasePage
-  element :settings_button, 'button.p_button.p_controlBarButton.p_playbackSettingsButton.p_dontCloseSettingsPanel'
-  element :play_cta,        'button.p_button.p_cta'
-  element :volume_button,   'button.p_button.p_controlBarButton.p_volumeButton.audio'
-  element :pause_button,    'button.p_button.p_controlBarButton.p_pauseButton'
-  element :leftTimeSlot,    'div.p_timeDisplay span.p_time', match: :first
-  element :rightTimeSlot,   'div.p_timeDisplay span.p_time.p_duration'
-  element :timeTip,         'div.p_timeTip > span.p_timeTipText'
-  element :seeker,          'div.p_playerSeekBarHolder > button.p_button.p_seekThumb'
-  element :cp_box,          'div.gcp_inpageCountdownItem'
-  element :countdown,       'div.gcp_inpageCountdownItem div.gcp_spinnerCountdown'
-  element :autoplayOption,  'div#p_autoplayToggle'
-  element :upnext,          'div.gcp_inpageCountdownItem div.gcp_inpageCountdownHeader span.gcp_countdownText'
-  element :more,            'div.gcp_carouselBackground p.gcp_moreContentTitle'
+  element :settings_button,   'button.p_button.p_controlBarButton.p_playbackSettingsButton.p_dontCloseSettingsPanel'
+  element :play_cta,          'button.p_button.p_cta'
+  element :volume_button,     'button.p_button.p_controlBarButton.p_volumeButton.audio'
+  element :pause_button,      'button.p_button.p_controlBarButton.p_pauseButton'
+  element :leftTimeSlot,      'div.p_timeDisplay span.p_time', match: :first
+  element :rightTimeSlot,     'div.p_timeDisplay span.p_time.p_duration'
+  element :timeTip,           'div.p_timeTip > span.p_timeTipText'
+  element :seeker,            'div.p_playerSeekBarHolder > button.p_button.p_seekThumb'
+  element :cp_box,            'div.gcp_inpageCountdownItem'
+  element :countdown,         'div.gcp_inpageCountdownItem div.gcp_spinnerCountdown'
+  element :countdownDiv,      'div.gcp_spinnerCountdown'
+  element :autoplayOption,    'div#p_autoplayToggle'
+  element :upnext,            'div.gcp_inpageCountdownItem div.gcp_inpageCountdownHeader span.gcp_countdownText'
+  element :more,              'div.gcp_carouselBackground p.gcp_moreContentTitle'
+  element :fullScreen_button, 'button.p_button.p_controlBarButton.p_fullscreenButton'
 
-  elements :carousal_elements, 'li.gcp_carouselItem div.gcp_item div.gcp_itemWrap div.gcp_itemCta svg.gcp_itemCtaIcon'
+  elements :carousal_elements,  'li.gcp_carouselItem div.gcp_item div.gcp_itemWrap div.gcp_itemCta svg.gcp_itemCtaIcon'
 
   def openSettings
     player.hover
@@ -52,14 +54,11 @@ class ContinuousPlay < BasePage
 
   def checkCountdown
     within_frame(frame) do
-      if (countdown.visible?)
+      begin
+        countdown.visible?
+      rescue Capybara::ElementNotFound
         true
-      # else true
       end
-      # countdown.visible?
-      # if (countdown.focusable? == false)
-      #   true
-      # end
     end
   end
 

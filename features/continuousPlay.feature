@@ -67,3 +67,11 @@ Feature: Playing an Program of Simulcast on SMP Cookbook tool.
     And I open the autoplay option
     And I seek to the end of the player
     Then I see one Up next and one More section
+
+  @cpInFullScreen
+  Scenario: Cp should be present when the screen in is full screen
+    When I click on Play CTA of Onwardjourney page
+    And I open the autoplay option
+    And I go to full screen mode
+    And I seek to the end of the player
+    Then I see the Continuous Play box at the end of the program
