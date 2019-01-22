@@ -75,3 +75,9 @@ Feature: Playing an Program of Simulcast on SMP Cookbook tool.
     And I go to full screen mode
     And I seek to the end of the player
     Then I see the Continuous Play box at the end of the program
+
+  @settingsClosesCountdown
+    Scenario: When CP loads, Settings button should be able to close the countdown
+      When I click on Play CTA of Onwardjourney page
+      And I seek to the end of the player
+      Then I countdown disapears at the end of the video

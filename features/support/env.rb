@@ -4,6 +4,9 @@ require 'selenium-webdriver'
 require 'site_prism'
 require 'rspec/expectations'
 require 'yaml'
+require 'capybara/poltergeist'
+require 'chunky_png'
+require 'image_size'
 # require 'touch_action'
 
 Capybara.default_driver = :selenium

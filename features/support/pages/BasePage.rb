@@ -7,10 +7,21 @@ class BasePage < SitePrism::Page
   element :player,          'div#smphtml5iframempwrp'
   element :backward_button,  'button#p_audioui_backInterval'
   element :forward_button,   'button#p_audioui_forwardInterval'
+  element :fullScreen_button, 'button.p_button.p_controlBarButton.p_fullscreenButton'
+  element :int_option,       'section.settings div.settings-environment input#environment-int'
+  element :test_option,      'section.settings div.settings-environment input#environment-test'
+  element :stage_option,     'section.settings div.settings-environment input#environment-stage'
+  element :live_option,      'section.settings div.settings-environment input#environment-live'
 
   def acceptCookie
     cookieOkPrompt.click
     cookieContinue.click
+  end
+
+  def goFullScreen
+    within_frame(frame) do
+      fullScreen_button.click
+    end
   end
 
   def checkElementPresent

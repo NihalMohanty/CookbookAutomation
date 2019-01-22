@@ -105,10 +105,16 @@ When("I seek to the end of the player") do
   objcreate(ContinuousPlay).seek_to_end_without_pause
 end
 
+When("I find countdown") do
+  sleep 2
+  objcreate(ContinuousPlay).checkCountdown
+  sleep 4
+end
+
 When("I go to full screen mode") do
   within_frame(objcreate(ContinuousPlay).frame) do
-  objcreate(ContinuousPlay).fullScreen_button.click
-end
+    objcreate(ContinuousPlay).fullScreen_button.click
+  end
 end
 
 Then("After specified time the next program gets played") do
@@ -141,6 +147,12 @@ end
 
 Then("I dont find any CP at the end of the video") do
   objcreate(ContinuousPlay).seek_to_end_without_pause
+  expect(objcreate(ContinuousPlay).checkCountdown).to be_truthy
+end
+
+Then("I countdown disapears at the end of the video") do
+  sleep 4
+  objcreate(ContinuousPlay).openSettings
   expect(objcreate(ContinuousPlay).checkCountdown).to be_truthy
 end
 
@@ -189,6 +201,15 @@ Then("I see the following elements to be present in the page") do |table|
   table.hashes.each do |row|
     row.each do |key, value|
       expect(objcreate(RadioPage).elementsPresent(value)).to be_truthy
+    end
+  end
+end
+
+Then("I see the following elements to be present in the page for player") do |table|
+  sleep 3
+  table.hashes.each do |row|
+    row.each do |key, value|
+      expect(objcreate(Page360).elementsPresent360(value)).to be_truthy
     end
   end
 end
@@ -248,6 +269,23 @@ end
 
 Then("I see the program starts playing") do
   expect(objcreate(Player).checkElementPresent).to be true
+end
+
+Then("I see the player move") do
+  sleep 3
+  objcreate(Page360).player.click
+  objcreate(Page360).goFullScreen
+  sleep 2
+  img1 = page.save_screenshot('screenshot.png')
+  sleep 2
+  objcreate(Page360).dragPlayer
+  img2 = page.save_screenshot('screenshot1.png')
+  p img1.image_size
+  p img2.image_size
+  if (img1.image_size === img2.image_size)
+    true
+  end
+  sleep 3
 end
 
 Then("I see the {int} player starts playing") do |int|
